@@ -29,3 +29,20 @@ def creating():
     conn.commit()
     conn.close()
     return "Basketball Table Successfully Created"
+
+@app.route('/db_insert')
+def creating():
+    conn = psycopg2.connect('postgres://lab10_db_pvd9_user:Ye7i4QvXGpsZkSQbZ6Es7wFZpGUfHWyC@dpg-cl3rea1novjs73bnl7n0-a/lab10_db_pvd9')
+    cur = conn.cursor()
+    cur.execute('''
+        INSERT INTO Basketball (First, Last, City, Name, Number)
+            Values
+            ('Jayson', 'Tatum', 'Boston', 'Celtics', 0),
+            ('Stephen', 'Curry', 'San Francisco', 'Warriors', 30),
+            ('Nikola', 'Jokic', 'Denver', 'Nuggets', 15),
+            ('Kawhi', 'Leonard', 'Los Angeles', 'Clippers', 2);
+        );
+        ''')
+    conn.commit()
+    conn.close()
+    return "Basketball Table Populated"
